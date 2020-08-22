@@ -33,7 +33,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_BASE] = LAYOUT( /* Base */
         KC_S,      KC_V,
     KC_INSERT, KC_HOME, KC_PGUP, TD(TD_TO_LED),
-    KC_DELETE, KC_END, KC_PGDOWN, KC_AUDIO_MUTE,
+        KC_DELETE, KC_END, KC_PGDOWN, LCTL(KC_0),
     LCTL(LALT(KC_UP)), KC_UP, LCTL(LALT(KC_DOWN)), KC_ENTER,
     KC_LEFT, KC_DOWN, KC_RIGHT, KC_ENTER
   ),
@@ -56,9 +56,9 @@ void encoder_update_user(uint8_t index, bool clockwise) {
         }
     } else if (index == 1) { /* Right Encoder */
         if (clockwise) {
-            tap_code(KC_BRIGHTNESS_DOWN);
+            register_code16(LCTL(KC_KP_MINUS));
         } else {
-            tap_code(KC_BRIGHTNESS_UP);
+            register_code16(LCTL(KC_KP_PLUS));
         }
     }
 }
